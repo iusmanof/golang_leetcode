@@ -1,0 +1,4 @@
+github.com/lib/pq v1.12.3 h1:tTWxr2YLKwIvK90ZXEw8GP7UFHtcbTtty8zsI+YjrfQ=
+github.com/lib/pq v1.12.3/go.mod h1:/p+8NSbOcwzAEI7wiMXFlgydTwcgTr3OSKMsD2BitpA=
+golang.org/x/example/hello v0.0.0-20250915201037-7f05d217867b h1:+gZE2jOdiscYByu0606Uw8Ldir2Cecd39Vq/3IEasRA=
+golang.org/x/example/hello v0.0.0-20250915201037-7f05d217867b/go.mod h1:UhUKOXx5fMcLZxwL20DUrWWBBoRYG9Jvc8FiwZhRHCI=
