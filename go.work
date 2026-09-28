@@ -6,4 +6,5 @@ use (
 	./data-access
 	./web-service-gin
 	./generics
+	./fuzz
 )

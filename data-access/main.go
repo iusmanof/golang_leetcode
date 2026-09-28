@@ -1,5 +1,5 @@
 // go mod init data-access
-// create main.go
+// create reverse.go
 // add line in go.work ./moduleNEW
 // go run ./data-access/
 // https://edwinsiby.medium.com/performing-crud-operations-in-postgresql-with-go-42657761125c
@@ -18,7 +18,10 @@ func main() {
 	db := connectPostgresDB()
 	for {
 		fmt.Println("Choose:\n 1 - Insert\n 2 - Read\n 3 - Update\n 4 - Delete")
-		fmt.Scan(&choice)
+		_, err := fmt.Scan(&choice)
+		if err != nil {
+			return
+		}
 
 		switch choice {
 		case 1:
@@ -39,7 +42,10 @@ func main() {
 func Delete(db *sql.DB) {
 	var id int
 	fmt.Println("Enter ID to DELETE: ")
-	fmt.Scan(&id)
+	_, err1 := fmt.Scan(&id)
+	if err1 != nil {
+		return
+	}
 
 	_, err := db.Query("DELETE FROM users WHERE id=$1", id)
 	if err != nil {
@@ -53,9 +59,15 @@ func Update(db *sql.DB) {
 	var id int
 	var new_name string
 	fmt.Println("Enter ID: ")
-	fmt.Scan(&id)
+	_, err1 := fmt.Scan(&id)
+	if err1 != nil {
+		return
+	}
 	fmt.Println("Enter new name: ")
-	fmt.Scan(&new_name)
+	_, err2 := fmt.Scan(&new_name)
+	if err2 != nil {
+		return
+	}
 	_, err := db.Query("UPDATE users SET name=$1 WHERE id=$2", new_name, id)
 	if err != nil {
 		fmt.Println(err)
@@ -75,7 +87,12 @@ func ReadFromPostgress(db *sql.DB) {
 		fmt.Println(err)
 		return
 	}
-	defer rows.Close()
+	defer func(rows *sql.Rows) {
+		err := rows.Close()
+		if err != nil {
+
+		}
+	}(rows)
 
 	fmt.Println("id  |  name  |  email")
 	fmt.Println("---------------------")
