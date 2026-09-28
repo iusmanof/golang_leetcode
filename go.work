@@ -7,4 +7,5 @@ use (
 	./web-service-gin
 	./generics
 	./fuzz
+	./vuln-tutorial
 )
